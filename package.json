@@ -1,0 +1,19 @@
+{
+  "name": "@assetval/state-switcher",
+  "version": "1.0.0",
+  "description": "A script to switch back and forth bettween abbreviated and non-abbr",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AssetVal/state-switcher.git"
+  },
+  "author": "Abourassa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AssetVal/state-switcher/issues"
+  },
+  "homepage": "https://github.com/AssetVal/state-switcher#readme"
+}
