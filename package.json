@@ -1,7 +1,7 @@
 {
   "name": "@assetval/state-switcher",
-  "version": "1.0.0",
-  "description": "A script to switch back and forth bettween abbreviated and non-abbr",
+  "version": "2.0.0",
+  "description": "A script to switch back and forth between abbreviated and non-abbr",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
