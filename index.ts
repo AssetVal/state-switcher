@@ -40,9 +40,13 @@ export const stateNameAndAbbrTuple: Array<USStateTuples> = [
   ['Wisconsin', 'WI'], ['Wyoming', 'WY'],
 ];
 
-export function abbreviateState(input: USState | USStateAbbreviations | string, to: undefined): USState | USStateAbbreviations | undefined
-export function abbreviateState(input: USState | USStateAbbreviations | string, to: 'long'): USState | undefined
-export function abbreviateState(input: USState | USStateAbbreviations | string, to: 'abbr'): USStateAbbreviations | undefined
+export function abbreviateState(input: string, to: undefined): USState | USStateAbbreviations | undefined
+export function abbreviateState(input: USState , to: undefined): USStateAbbreviations | undefined
+export function abbreviateState(input: USStateAbbreviations , to: undefined): USState | undefined
+export function abbreviateState(input: string, to: 'long'): USState | undefined
+export function abbreviateState(input: USState | USStateAbbreviations, to: 'long'): USState
+export function abbreviateState(input: string, to: 'abbr'): USStateAbbreviations | undefined
+export function abbreviateState(input: USState | USStateAbbreviations, to: 'abbr'): USStateAbbreviations
 export default function abbreviateState(input: USState | USStateAbbreviations | string, to?: 'long'|'abbr'): USState | USStateAbbreviations | undefined {
   const cleanInput = (stateStr: USState | USStateAbbreviations | string) => {
     // Change the input to only capitalize the first letter in each word
