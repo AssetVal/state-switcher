@@ -40,11 +40,11 @@ export const stateNameAndAbbrTuple: Array<USStateTuples> = [
   ['Wisconsin', 'WI'], ['Wyoming', 'WY'],
 ];
 
-export function abbreviateState(input: USState | USStateAbbreviations, to: undefined): USState | USStateAbbreviations | undefined
-export function abbreviateState(input: USState | USStateAbbreviations, to: 'long'): USState | undefined
-export function abbreviateState(input: USState | USStateAbbreviations, to: 'abbr'): USStateAbbreviations | undefined
-export default function abbreviateState(input: USState | USStateAbbreviations, to?: 'long'|'abbr'): USState | USStateAbbreviations | undefined {
-  const cleanInput = (stateStr: USState|USStateAbbreviations) => {
+export function abbreviateState(input: USState | USStateAbbreviations | string, to: undefined): USState | USStateAbbreviations | undefined
+export function abbreviateState(input: USState | USStateAbbreviations | string, to: 'long'): USState | undefined
+export function abbreviateState(input: USState | USStateAbbreviations | string, to: 'abbr'): USStateAbbreviations | undefined
+export default function abbreviateState(input: USState | USStateAbbreviations | string, to?: 'long'|'abbr'): USState | USStateAbbreviations | undefined {
+  const cleanInput = (stateStr: USState | USStateAbbreviations | string) => {
     // Change the input to only capitalize the first letter in each word
     if (stateStr.length > 2) return stateStr.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()) as USState
     // Change the input to only uppercase
@@ -71,14 +71,14 @@ export default function abbreviateState(input: USState | USStateAbbreviations, t
     if (to === 'long'){
       // Only try and find the long name if the input is an abbreviation
       if (input.length === 2) return findLongName(input as USStateAbbreviations);
-      if (states.includes(input as USState)) return input;
+      if (states.includes(input as USState)) return input as USState;
       return undefined;
     }
 
     if (to === 'abbr' && input != undefined){
       // Only try and find the abbreviation if the input is a long name
       if (input.length > 2) return findAbbreviation(input as USState);
-      if (stateAbbreviations.includes(input as USStateAbbreviations)) return input;
+      if (stateAbbreviations.includes(input as USStateAbbreviations)) return input as USStateAbbreviations;
       return undefined;
     }
     // Guess the input type based on size if no transformation directive is given
