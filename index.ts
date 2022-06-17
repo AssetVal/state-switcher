@@ -40,7 +40,10 @@ export const stateNameAndAbbrTuple: Array<USStateTuples> = [
   ['Wisconsin', 'WI'], ['Wyoming', 'WY'],
 ];
 
-export default function abbreviateState(input: USState|USStateAbbreviations, to?: 'long'|'abbr'): USState|USStateAbbreviations|undefined {
+export function abbreviateState(input: USState | USStateAbbreviations, to: undefined): USState | USStateAbbreviations | undefined
+export function abbreviateState(input: USState | USStateAbbreviations, to: 'long'): USState | undefined
+export function abbreviateState(input: USState | USStateAbbreviations, to: 'abbr'): USStateAbbreviations | undefined
+export default function abbreviateState(input: USState | USStateAbbreviations, to?: 'long'|'abbr'): USState | USStateAbbreviations | undefined {
   const cleanInput = (stateStr: USState|USStateAbbreviations) => {
     // Change the input to only capitalize the first letter in each word
     if (stateStr.length > 2) return stateStr.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()) as USState
