@@ -1,12 +1,12 @@
 {
   "name": "@assetval/state-switcher",
-  "version": "2.5.0",
+  "version": "2.5.1",
   "description": "A script to switch back and forth between abbreviated and non-abbr",
   "main": "index.js",
   "scripts": {
     "test": "mocha",
     "coverage": "nyc npm run test",
-    "build": "esbuild index.ts --bundle --minify --sourcemap --outfile=index.js"
+    "build": "esbuild index.ts --bundle --minify --sourcemap --platform=node --outfile=index.js"
   },
   "repository": {
     "type": "git",
