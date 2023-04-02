@@ -20,8 +20,8 @@
   "homepage": "https://github.com/AssetVal/state-switcher#readme",
   "devDependencies": {
     "@types/assert": "^1.5.6",
-    "@types/mocha": "^9.1.1",
-    "esbuild": "^0.14.45",
+    "@types/mocha": "^10.0.1",
+    "esbuild": "^0.17.15",
     "mocha": "^10.0.0",
     "nyc": "^15.1.0"
   }
