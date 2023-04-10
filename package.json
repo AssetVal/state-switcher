@@ -1,6 +1,6 @@
 {
   "name": "@assetval/state-switcher",
-  "version": "2.5.3",
+  "version": "2.6.1",
   "description": "A script to switch back and forth between abbreviated and non-abbr",
   "main": "index.js",
   "scripts": {
