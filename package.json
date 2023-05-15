@@ -3,6 +3,7 @@
   "version": "3.0.0",
   "description": "A script to switch back and forth between abbreviated and non-abbr",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "mocha",
     "coverage": "nyc npm run test",

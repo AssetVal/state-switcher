@@ -2,7 +2,7 @@
   "compilerOptions": {
     /* Basic Options */
     "target": "ESNext",                          /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019' or 'ESNEXT'. */
-    "module": "umd",                     /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
+    "module": "ESNext",                     /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
     "declaration": true,                   /* Generates corresponding '.d.ts' file. */
     "strict": true,                           /* Enable all strict type-checking options. */
     "noImplicitAny": true,                 /* Raise error on expressions and declarations with an implied 'any' type. */
@@ -15,6 +15,6 @@
     "esModuleInterop": true,
     "moduleResolution": "node",
   },
-  "include": ["**/*.ts"],
+  "include": ["**/*.ts", "test/index.spec.ts"],
   "exclude": ["./node_modules"],
 }
