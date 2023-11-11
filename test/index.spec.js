@@ -28,65 +28,70 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const assert_1 = __importDefault(require("assert"));
 const index_js_1 = __importStar(require("../index.js"));
-describe('state-switcher', function () {
-    describe('Array<states>', function () {
-        it('should contain the correct states', function () {
-            assert_1.default.deepStrictEqual(index_js_1.states[0], 'American Samoa');
-            assert_1.default.deepStrictEqual(index_js_1.states[4], 'Arkansas');
+const { states, stateAbbreviations, stateMap } = index_js_1.DataSources;
+describe('state-switcher', () => {
+    describe('Array<states>', () => {
+        it('should contain the correct states', () => {
+            assert_1.default.deepStrictEqual(states[0], 'American Samoa');
+            assert_1.default.deepStrictEqual(states[4], 'Arkansas');
         });
     });
-    describe('Array<stateAbbreviations>', function () {
-        it('should contain the correct state abbreviations', function () {
-            assert_1.default.deepStrictEqual(index_js_1.stateAbbreviations[0], 'AS');
-            assert_1.default.deepStrictEqual(index_js_1.stateAbbreviations[4], 'AR');
+    describe('Array<stateAbbreviations>', () => {
+        it('should contain the correct state abbreviations', () => {
+            assert_1.default.deepStrictEqual(stateAbbreviations[0], 'AS');
+            assert_1.default.deepStrictEqual(stateAbbreviations[4], 'AR');
         });
     });
-    describe('Array<stateNameAndAbbrTuple>', function () {
-        it('should contain the correct state tuples', function () {
-            assert_1.default.deepStrictEqual(index_js_1.stateNameAndAbbrTuple[0][0], 'American Samoa');
-            assert_1.default.deepStrictEqual(index_js_1.stateNameAndAbbrTuple[0][1], 'AS');
-            assert_1.default.deepStrictEqual(index_js_1.stateNameAndAbbrTuple[4][0], 'Arkansas');
-            assert_1.default.deepStrictEqual(index_js_1.stateNameAndAbbrTuple[4][1], 'AR');
+    describe('Array<stateNameAndAbbrTuple>', () => {
+        it('should contain the correct state tuples', () => {
+            const stateNameAndAbbrTuple = [...stateMap.entries()];
+            assert_1.default.deepStrictEqual(stateNameAndAbbrTuple[0][0], 'American Samoa');
+            assert_1.default.deepStrictEqual(stateNameAndAbbrTuple[0][1], 'AS');
+            assert_1.default.deepStrictEqual(stateNameAndAbbrTuple[4][0], 'Arkansas');
+            assert_1.default.deepStrictEqual(stateNameAndAbbrTuple[4][1], 'AR');
         });
     });
-    describe('abbreviateState()', function () {
-        it('Should return an abbreviated state if given a long form state, when missing a transform directive', function () {
+    describe('abbreviateState()', () => {
+        it('Should return an abbreviated state if given a long form state, when missing a transform directive', () => {
             assert_1.default.deepStrictEqual((0, index_js_1.default)('California'), 'CA');
             assert_1.default.deepStrictEqual((0, index_js_1.default)('New York'), 'NY');
             assert_1.default.deepStrictEqual((0, index_js_1.default)('Washington'), 'WA');
         });
-        it('Should return the long form state if given an abbreviated state, when missing a transform directive', function () {
+        it('Should return the long form state if given an abbreviated state, when missing a transform directive', () => {
             assert_1.default.deepStrictEqual((0, index_js_1.default)('CA'), 'California');
             assert_1.default.deepStrictEqual((0, index_js_1.default)('NY'), 'New York');
             assert_1.default.deepStrictEqual((0, index_js_1.default)('WA'), 'Washington');
         });
-        it('Should return undefined if given a state that is not in the list, when missing a transform directive', function () {
+        it('Should return undefined if given a state that is not in the list, when missing a transform directive', () => {
+            // @ts-expect-error - intentionally passing an invalid state
             assert_1.default.deepStrictEqual((0, index_js_1.default)('ZZ'), undefined);
         });
-        it('Should return an abbreviated state if given a long form state, when using the \'abbr\' transform directive', function () {
+        it('Should return an abbreviated state if given a long form state, when using the \'abbr\' transform directive', () => {
             assert_1.default.deepStrictEqual((0, index_js_1.default)('California', 'abbr'), 'CA');
             assert_1.default.deepStrictEqual((0, index_js_1.default)('New York', 'abbr'), 'NY');
             assert_1.default.deepStrictEqual((0, index_js_1.default)('Washington', 'abbr'), 'WA');
         });
-        it('Should return the abbreviated state if given an abbreviated state, when using the \'abbr\' transform directive', function () {
+        it('Should return the abbreviated state if given an abbreviated state, when using the \'abbr\' transform directive', () => {
             assert_1.default.deepStrictEqual((0, index_js_1.default)('CA', 'abbr'), 'CA');
             assert_1.default.deepStrictEqual((0, index_js_1.default)('NY', 'abbr'), 'NY');
             assert_1.default.deepStrictEqual((0, index_js_1.default)('WA', 'abbr'), 'WA');
         });
-        it('Should return undefined if given a state that is not in the list, when using the \'abbr\' transform directive', function () {
+        it('Should return undefined if given a state that is not in the list, when using the \'abbr\' transform directive', () => {
+            // @ts-expect-error - intentionally passing an invalid state
             assert_1.default.deepStrictEqual((0, index_js_1.default)('ZZ', 'abbr'), undefined);
         });
-        it('Should return an long form state if given a abbreviated state, when using the \'long\' transform directive', function () {
+        it('Should return an long form state if given a abbreviated state, when using the \'long\' transform directive', () => {
             assert_1.default.deepStrictEqual((0, index_js_1.default)('CA', 'long'), 'California');
             assert_1.default.deepStrictEqual((0, index_js_1.default)('NY', 'long'), 'New York');
             assert_1.default.deepStrictEqual((0, index_js_1.default)('WA', 'long'), 'Washington');
         });
-        it('Should return the long form state if given an long form state, when using the \'long\' transform directive', function () {
+        it('Should return the long form state if given an long form state, when using the \'long\' transform directive', () => {
             assert_1.default.deepStrictEqual((0, index_js_1.default)('California', 'long'), 'California');
             assert_1.default.deepStrictEqual((0, index_js_1.default)('New York', 'long'), 'New York');
             assert_1.default.deepStrictEqual((0, index_js_1.default)('Washington', 'long'), 'Washington');
         });
-        it('Should return undefined if given a state that is not in the list, when using the \'long\' transform directive', function () {
+        it('Should return undefined if given a state that is not in the list, when using the \'long\' transform directive', () => {
+            // @ts-expect-error - intentionally passing an invalid state
             assert_1.default.deepStrictEqual((0, index_js_1.default)('ZZ', 'long'), undefined);
         });
     });
