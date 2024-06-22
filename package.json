@@ -1,12 +1,12 @@
 {
   "name": "@assetval/state-switcher",
-  "version": "4.1.1",
+  "version": "5.0.0",
   "description": "A script to switch back and forth between abbreviated and non-abbr",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
-    "coverage": "nyc npm run test",
-    "build": "esbuild index.ts --bundle --minify --platform=node --target=node18.4 --outfile=index.js"
+    "build": "tsc --project tsconfig.json",
+    "test": "vitest run --coverage --config ./vitest.config.ts",
+    "iterate": "npm version patch && git push origin main --tags && npm publish --access public"
   },
   "repository": {
     "type": "git",
@@ -18,17 +18,22 @@
     "url": "https://github.com/AssetVal/state-switcher/issues"
   },
   "homepage": "https://github.com/AssetVal/state-switcher#readme",
+  "dependencies": {
+    "fuzzyset.js": "^1.0.7"
+  },
   "devDependencies": {
     "@eslint/eslintrc": "^3.1.0",
     "@magik_io/lint_golem": "^2.2.1",
     "@types/assert": "^1.5.10",
+    "@types/fuzzyset.js": "^0.0.5",
     "@types/mocha": "^10.0.7",
-    "esbuild": "^0.21.5",
+    "@vitest/coverage-v8": "^1.6.0",
     "eslint": "^9.5.0",
     "mocha": "^10.4.0",
     "nyc": "^17.0.0",
     "typescript": "^5.5.2",
-    "typescript-eslint": "^7.13.1"
+    "typescript-eslint": "^7.13.1",
+    "vitest": "^1.6.0"
   },
   "packageManager": "yarn@4.3.1"
 }

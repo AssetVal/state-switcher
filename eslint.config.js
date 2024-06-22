@@ -6,6 +6,12 @@ module.exports = tseslint.config(
     rootDir: __dirname,
     tsconfigPaths: ['tsconfig.json'],
     ignoreGlobs: ['node_modules/**', '*.lock'],
-    disabledRules: ['n/no-extraneous-import', 'n/no-missing-import', 'n/no-require-imports', 'n/hashbang']
+    disabledRules: [
+      'n/no-extraneous-import',
+      'n/no-missing-import',
+      'n/no-unpublished-import',
+      'n/no-require-imports',
+      'n/hashbang'
+    ]
   }).config
 )

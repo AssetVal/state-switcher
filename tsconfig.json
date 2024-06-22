@@ -12,5 +12,9 @@
     "moduleResolution": "node",
     "outDir": "./dist",
   },
-  "include": ["src/**/*.ts", "test/index.spec.ts"],
+  "include": [
+    "./src/**/*.ts",
+    "./test/**/*.test.ts",
+    "./vitest.config.ts",
+  ],
 }
