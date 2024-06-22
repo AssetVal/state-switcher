@@ -1,5 +1,5 @@
 import assert from 'assert';
-import abbreviateState, { DataSources } from '../index.js';
+import abbreviateState, { DataSources } from '../src/index.js';
 
 const { states, stateAbbreviations, stateMap } = DataSources;
 
