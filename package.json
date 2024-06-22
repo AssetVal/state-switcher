@@ -2,7 +2,7 @@
   "name": "@assetval/state-switcher",
   "version": "5.0.0",
   "description": "A script to switch back and forth between abbreviated and non-abbr",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc --project tsconfig.json",
     "test": "vitest run --coverage --config ./vitest.config.ts",
