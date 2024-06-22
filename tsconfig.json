@@ -10,6 +10,7 @@
     "alwaysStrict": true,                  /* Parse in strict mode and emit "use strict" for each source file. */
     "esModuleInterop": true,
     "moduleResolution": "node",
+    "outDir": "./dist",
   },
-  "include": ["**/*.ts", "test/index.spec.ts"],
+  "include": ["src/**/*.ts", "test/index.spec.ts"],
 }

@@ -19,24 +19,16 @@
   },
   "homepage": "https://github.com/AssetVal/state-switcher#readme",
   "devDependencies": {
-    "@eslint/eslintrc": "^2.1.3",
-    "@getify/eslint-plugin-proper-ternary": "^3.1.1",
-    "@types/assert": "^1.5.6",
-    "@types/mocha": "^10.0.1",
-    "@typescript-eslint/eslint-plugin": "^6.10.0",
-    "@typescript-eslint/parser": "^6.10.0",
-    "esbuild": "^0.17.19",
-    "eslint": "^8.53.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-airbnb-typescript": "^17.1.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-import-resolver-node": "^0.3.9",
-    "eslint-plugin-import": "^2.29.0",
-    "eslint-plugin-n": "^16.3.1",
-    "eslint-plugin-security": "^1.7.1",
-    "jsonc-eslint-parser": "^2.4.0",
-    "mocha": "^10.2.0",
-    "nyc": "^15.1.0",
-    "typescript": "^5.2.2"
-  }
+    "@eslint/eslintrc": "^3.1.0",
+    "@magik_io/lint_golem": "^2.2.1",
+    "@types/assert": "^1.5.10",
+    "@types/mocha": "^10.0.7",
+    "esbuild": "^0.21.5",
+    "eslint": "^9.5.0",
+    "mocha": "^10.4.0",
+    "nyc": "^17.0.0",
+    "typescript": "^5.5.2",
+    "typescript-eslint": "^7.13.1"
+  },
+  "packageManager": "yarn@4.3.1"
 }
