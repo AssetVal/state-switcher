@@ -1,5 +1,3 @@
-import fuzzySearch from 'fuzzyset.js';
-
 export type USState = 'American Samoa' | 'Arizona' | 'Alabama' | 'Alaska' | 'Arkansas' | 'California' | 'Colorado' | 'Connecticut' | 'Delaware' | 'Florida' | 'Georgia' | 'Hawaii'
   | 'Idaho' | 'Illinois' | 'Indiana' | 'Iowa' | 'Kansas' | 'Kentucky' | 'Louisiana' | 'Maine' | 'Maryland' | 'Massachusetts' | 'Michigan' | 'Minnesota' | 'Mississippi'
   | 'Missouri' | 'Montana' | 'Nebraska' | 'Nevada' | 'New Hampshire' | 'New Jersey' | 'New Mexico' | 'New York' | 'North Carolina' | 'North Dakota' | 'Northern Mariana Islands'
@@ -51,7 +49,7 @@ export default class USStateConverter {
     ['Wisconsin', 'WI'], ['Wyoming', 'WY'],
   ]);
 
-  protected static convertToAbbreviation(state: USState | string) {
+  protected static async convertToAbbreviation(state: USState | string): Promise<USStateAbbreviations> {
     let stateToMatch = `${state}`.trim();
     if (!this.isUSState(stateToMatch)) {
       try {
@@ -59,6 +57,7 @@ export default class USStateConverter {
           return stateToMatch as USStateAbbreviations;
         }
 
+        const { default: fuzzySearch } = await import('fuzzyset.js');
         const fuzzyDict = fuzzySearch(this.states);
         const matches = fuzzyDict.get(stateToMatch);
         if (!matches || matches[0][0] < 0.7) throw new Error(`Invalid state: ${stateToMatch}`);
@@ -75,12 +74,15 @@ export default class USStateConverter {
     return abbreviation;
   }
 
-  protected static expandStateAbbreviation(abbreviation: USStateAbbreviations | string) {
+  protected static async expandStateAbbreviation(abbreviation: USStateAbbreviations | string): Promise<USState> {
     let abbr = `${abbreviation}`.trim();
     if (!this.isUSStateAbbreviation(abbr)) {
       try {
-        if (this.isUSState(abbr)) return abbr as USState;
+        if (this.isUSState(abbr)) {
+          return abbr as USState;
+        }
 
+        const { default: fuzzySearch } = await import('fuzzyset.js');
         const fuzzyDict = fuzzySearch(this.stateAbbreviations);
         const matches = fuzzyDict.get(abbr);
         if (!matches) throw new Error(`Invalid state abbreviation: ${abbr}`);
@@ -98,7 +100,7 @@ export default class USStateConverter {
     return state;
   }
 
-  public static convert<
+  public static async convert<
     Text extends USState | USStateAbbreviations | string = USState | USStateAbbreviations | string,
     To extends 'long' | 'abbr' = Text extends USState ? 'abbr' : 'long'
   >(
@@ -111,17 +113,17 @@ export default class USStateConverter {
     }
     if (to === 'long') {
       return USStateConverter.expandStateAbbreviation(input) as Text extends USStateAbbreviations
-        ? USState
+        ? Promise<USState>
         : To extends 'long'
-        ? USState
+        ? Promise<USState>
         : never
     };
     // Return as abbreviation
     if (to === 'abbr') {
       return USStateConverter.convertToAbbreviation(input) as Text extends USState
-        ? USStateAbbreviations
+        ? Promise<USStateAbbreviations>
         : To extends 'abbr'
-        ? USStateAbbreviations
+        ? Promise<USStateAbbreviations>
         : never
     }
     throw new Error(`Invalid conversion: ${input} to ${to}`);
