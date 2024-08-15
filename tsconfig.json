@@ -1,20 +1,22 @@
 {
   "compilerOptions": {
-    /* Basic Options */
-    "target": "ES2022",                          /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019' or 'ESNEXT'. */
-    "module": "CommonJS",                     /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
-    "declaration": true,                   /* Generates corresponding '.d.ts' file. */
-    "strict": true,                           /* Enable all strict type-checking options. */
-    "noImplicitAny": true,
-    "noImplicitThis": true,                /* Raise error on 'this' expressions with an implied 'any' type. */
-    "alwaysStrict": true,                  /* Parse in strict mode and emit "use strict" for each source file. */
-    "esModuleInterop": true,
-    "moduleResolution": "node",
+    "composite": false,
     "outDir": "./dist",
+    "declaration": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+    "moduleDetection": "auto",
+    "moduleResolution": "Bundler",
+    "module": "ES2022",
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
   },
   "include": [
-    "./src/**/*.ts",
-    "./test/**/*.test.ts",
-    "./vitest.config.ts",
+    "src/USStateConverter.ts",
+    "test/USStateConverter.test.ts",
+    "build.config.ts",
   ],
 }

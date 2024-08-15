@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { abbreviateState, DataSources } from '../src/index';
+import { abbreviateState, DataSources } from '../src/USStateConverter';
 
 describe('state-switcher', () => {
   describe('Array<states>', () => {

@@ -2,11 +2,28 @@
   "name": "@assetval/state-switcher",
   "version": "5.0.2",
   "description": "A script to switch back and forth between abbreviated and non-abbr",
-  "main": "dist/index.js",
+  "engines": {
+    "node": "v22.6.0",
+    "yarn": "4.4.0"
+  },
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/USStateConverter.d.ts",
+      "import": "./dist/USStateConverter.mjs",
+      "require": "./dist/USStateConverter.cjs"
+    }
+  },
+  "main": "dist/USStateConverter.cjs",
+  "module": "dist/USStateConverter.mjs",
+  "types": "dist/USStateConverter.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "tsc --project tsconfig.json",
+    "build": "unbuild",
     "test": "vitest run --coverage --config ./vitest.config.ts",
-    "iterate": "npm version patch && git push origin main --tags && npm publish --access public"
+    "iterate": "yarn version patch && git push origin main --tags && yarn npm publish --access public"
   },
   "repository": {
     "type": "git",
@@ -19,21 +36,44 @@
   },
   "homepage": "https://github.com/AssetVal/state-switcher#readme",
   "dependencies": {
+    "@assetval/confs": "^1.0.0",
+    "@assetval/fuzzyset": "^1.1.1",
     "fuzzyset.js": "^1.0.7"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.1.0",
-    "@magik_io/lint_golem": "^2.2.1",
+    "@magik_io/lint_golem": "^2.2.3",
     "@types/assert": "^1.5.10",
     "@types/fuzzyset.js": "^0.0.5",
     "@types/mocha": "^10.0.7",
-    "@vitest/coverage-v8": "^1.6.0",
-    "eslint": "^9.5.0",
-    "mocha": "^10.4.0",
+    "@types/node": "^22.3.0",
+    "@vitest/coverage-v8": "^2.0.5",
+    "eslint": "^9.9.0",
+    "mocha": "^10.7.3",
     "nyc": "^17.0.0",
-    "typescript": "^5.5.2",
-    "typescript-eslint": "^7.13.1",
-    "vitest": "^1.6.0"
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.1.0",
+    "unbuild": "^2.0.0",
+    "vitest": "^2.0.5"
   },
-  "packageManager": "yarn@4.3.1"
+  "packageManager": "yarn@4.4.0",
+  "unbuild": {
+    "rollup": {
+      "esbuild": {
+        "tsconfigRaw": {
+          "extends": "./tsconfig.json",
+          "compilerOptions": {
+            "outDir": "dist",
+            "rootDir": "src",
+            "declaration": true,
+            "experimentalDecorators": true,
+            "target": "ES2022"
+          },
+          "include": [
+            "./src/USStateConverter"
+          ]
+        }
+      }
+    }
+  }
 }

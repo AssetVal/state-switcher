@@ -1,4 +1,4 @@
-import fuzzySearch from 'fuzzyset.js';
+import { FuzzySet } from '@assetval/fuzzyset';
 
 export type USState = 'American Samoa' | 'Arizona' | 'Alabama' | 'Alaska' | 'Arkansas' | 'California' | 'Colorado' | 'Connecticut' | 'Delaware' | 'Florida' | 'Georgia' | 'Hawaii'
   | 'Idaho' | 'Illinois' | 'Indiana' | 'Iowa' | 'Kansas' | 'Kentucky' | 'Louisiana' | 'Maine' | 'Maryland' | 'Massachusetts' | 'Michigan' | 'Minnesota' | 'Mississippi'
@@ -9,7 +9,7 @@ export type USStateAbbreviations = 'AS' | 'AZ' | 'AL' | 'AK' | 'AR' | 'CA' | 'CO
   | 'MI' | 'MN' | 'MS' | 'MO' | 'MT' | 'NE' | 'NV' | 'NH' | 'NJ' | 'NM' | 'NY' | 'NC' | 'ND' | 'MP' | 'OH' | 'OK' | 'OR' | 'PA' | 'PR' | 'RI' | 'SC' | 'SD'
   | 'TN' | 'TX' | 'UT' | 'VT' | 'VA' | 'VI' | 'WA' | 'WV' | 'WI' | 'WY';
 
-export default class USStateConverter {
+export class USStateConverter {
   public static readonly states: Array<USState> = [
     'American Samoa', 'Arizona', 'Alabama', 'Alaska', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa',
     'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey',
@@ -59,7 +59,7 @@ export default class USStateConverter {
           return stateToMatch as USStateAbbreviations;
         }
 
-        const fuzzyDict = fuzzySearch(this.states);
+        const fuzzyDict = FuzzySet(this.states);
         const matches = fuzzyDict.get(stateToMatch);
         if (!matches || matches[0][0] < 0.7) throw new Error(`Invalid state: ${stateToMatch}`);
         const [bestMatch] = matches;
@@ -81,7 +81,7 @@ export default class USStateConverter {
       try {
         if (this.isUSState(abbr)) return abbr as USState;
 
-        const fuzzyDict = fuzzySearch(this.stateAbbreviations);
+        const fuzzyDict = FuzzySet(this.stateAbbreviations);
         const matches = fuzzyDict.get(abbr);
         if (!matches) throw new Error(`Invalid state abbreviation: ${abbr}`);
         if (matches.length > 1 && matches[0][0] < 0.6) throw new Error(`Invalid state abbreviation: ${abbr}`);

@@ -1,9 +1,41 @@
-/.vscode/**
-/.yarn/**
-/node_modules/**
-/src/**
-/test/**
-.tools-versions
-eslint.config.js
+# Source Files
+**/src/**/*
+
+# NPM / PNP
+.pnp.*
+
+# Linting / Formatting
+eslint.config.*
+.editorconfig
+
+# Yarn
+.gitattributes
 .yarnrc.yml
-tsconfig.json
+**/.yarn/**/*
+.yarn
+
+# moon
+.moon/cache
+.moon/docker
+**/moon.yml
+
+# Node
+node_modules
+**/node_modules/**/*
+
+# Git
+**/.git/**/*
+
+# git-chglog
+.chglog
+
+# vscode
+.vscode
+**/.vscode/**/*
+
+# Typescript
+**/*.tsbuildinfo
+**/tsconfig.json
+
+# ASDF
+**/.tool-versions
