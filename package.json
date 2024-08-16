@@ -37,7 +37,7 @@
   "homepage": "https://github.com/AssetVal/state-switcher#readme",
   "dependencies": {
     "@assetval/confs": "^1.0.0",
-    "@assetval/fuzzyset": "^1.1.1",
+    "@assetval/fuzzyset": "^1.3.0",
     "fuzzyset.js": "^1.0.7"
   },
   "devDependencies": {

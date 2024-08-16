@@ -1,4 +1,4 @@
-import { FuzzySet } from '@assetval/fuzzyset';
+import { FuzzySearch, FuzzySet } from '@assetval/fuzzyset';
 
 export type USState = 'American Samoa' | 'Arizona' | 'Alabama' | 'Alaska' | 'Arkansas' | 'California' | 'Colorado' | 'Connecticut' | 'Delaware' | 'Florida' | 'Georgia' | 'Hawaii'
   | 'Idaho' | 'Illinois' | 'Indiana' | 'Iowa' | 'Kansas' | 'Kentucky' | 'Louisiana' | 'Maine' | 'Maryland' | 'Massachusetts' | 'Michigan' | 'Minnesota' | 'Mississippi'
@@ -59,8 +59,9 @@ export class USStateConverter {
           return stateToMatch as USStateAbbreviations;
         }
 
-        const fuzzyDict = FuzzySet(this.states);
+        const fuzzyDict = new FuzzySearch(this.states);
         const matches = fuzzyDict.get(stateToMatch);
+        console.log({ matches });
         if (!matches || matches[0][0] < 0.7) throw new Error(`Invalid state: ${stateToMatch}`);
         const [bestMatch] = matches;
         stateToMatch = bestMatch[1];
